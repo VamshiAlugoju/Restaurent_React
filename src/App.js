@@ -3,9 +3,12 @@ import Header from "./components/Layout/Header";
 import Summary from "./components/Layout/Summary";
 import Meals from "./components/Meals/Meals";
 import OrderModal from "./components/Meals/OrderModal";
+import CartProvider  from "./Context/CartProvider";
+
 
 function App() {
   const [isshown,setisshown] = React.useState(false);
+ 
 
   function Handleisshown()
   {
@@ -13,12 +16,14 @@ function App() {
   }
 
   return (
-    <div>
+    <>
+     <CartProvider>
       <Header handleCart={Handleisshown} />
       <Summary />
-      <Meals />
+      <Meals />   
      { isshown && <OrderModal handleCart={Handleisshown} />}
-    </div>
+    </CartProvider>
+    </>
   );
 }
 
